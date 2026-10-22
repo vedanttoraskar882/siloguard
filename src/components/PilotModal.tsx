@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, CheckCircle2, AlertCircle, ShieldAlert, Building2, User, Phone, Mail, Clock } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Building2, User, Phone, Mail, Clock } from 'lucide-react';
 import type { PilotSubmission } from '../types';
 import { PILOT_STORAGE_KEY } from '../types';
 
@@ -28,12 +28,10 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
   useEffect(() => {
     if (!isOpen) return;
 
-    // Reset messages and errors when opened
     setErrors({});
     setStorageError(null);
     setSuccessMessage(null);
 
-    // Focus first input on open
     const timer = setTimeout(() => {
       firstInputRef.current?.focus();
     }, 50);
@@ -67,7 +65,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    // Prevent background scrolling
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
@@ -75,7 +72,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
       clearTimeout(timer);
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
-      // Restore focus
       if (triggerRef?.current) {
         triggerRef.current.focus();
       }
@@ -98,7 +94,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
     if (!trimmedPhone) {
       errs.phoneNumber = 'Phone number is required.';
     } else {
-      // Practical international phone regex allowing +, spaces, brackets, hyphens
       const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,20}$/;
       if (!phoneRegex.test(trimmedPhone)) {
         errs.phoneNumber = 'Please enter a valid telephone number.';
@@ -108,7 +103,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
     if (!trimmedEmail) {
       errs.emailAddress = 'Email address is required.';
     } else {
-      // Standard email regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(trimmedEmail)) {
         errs.emailAddress = 'Please enter a valid email address.';
@@ -125,7 +119,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (isSubmitting) return;
 
     setStorageError(null);
@@ -137,7 +130,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
     setIsSubmitting(true);
 
     try {
-      // Check localStorage availability
       if (typeof window === 'undefined' || !window.localStorage) {
         throw new Error('Browser localStorage is not available.');
       }
@@ -165,7 +157,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
         }
       }
 
-      // Generate unique ID
       const newId =
         typeof crypto !== 'undefined' && crypto.randomUUID
           ? crypto.randomUUID()
@@ -182,15 +173,12 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
 
       const updatedArray = [...existingArray, newSubmission];
 
-      // Save to localStorage
       window.localStorage.setItem(PILOT_STORAGE_KEY, JSON.stringify(updatedArray));
 
-      // Show exact required success message only after storage succeeds
       setSuccessMessage(
         'Your pilot enquiry has been saved in this browser. No information has been sent to SiloGuard.'
       );
 
-      // Clear the form fields after success
       setFullName('');
       setPhoneNumber('');
       setEmailAddress('');
@@ -207,19 +195,13 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="pilot-modal-title"
     >
-      {/* Background click to dismiss */}
-      <div
-        className="fixed inset-0"
-        aria-hidden="true"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0" aria-hidden="true" onClick={onClose} />
 
-      {/* Modal Dialog Content */}
       <div
         ref={modalRef}
         className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
@@ -326,7 +308,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
                         setErrors((prev) => ({ ...prev, fullName: '' }));
                       }
                     }}
-                    placeholder="e.g. John Henderson"
                     className={`w-full pl-9 pr-3 py-2.5 text-sm rounded-lg border ${
                       errors.fullName
                         ? 'border-rose-400 bg-rose-50/50 text-rose-900 focus:ring-rose-400'
@@ -368,7 +349,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
                         setErrors((prev) => ({ ...prev, organisationName: '' }));
                       }
                     }}
-                    placeholder="e.g. East Anglia Grain Storage Ltd"
                     className={`w-full pl-9 pr-3 py-2.5 text-sm rounded-lg border ${
                       errors.organisationName
                         ? 'border-rose-400 bg-rose-50/50 text-rose-900 focus:ring-rose-400'
@@ -410,7 +390,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
                         setErrors((prev) => ({ ...prev, emailAddress: '' }));
                       }
                     }}
-                    placeholder="operations@grainstore.co.uk"
                     className={`w-full pl-9 pr-3 py-2.5 text-sm rounded-lg border ${
                       errors.emailAddress
                         ? 'border-rose-400 bg-rose-50/50 text-rose-900 focus:ring-rose-400'
@@ -452,7 +431,6 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
                         setErrors((prev) => ({ ...prev, phoneNumber: '' }));
                       }
                     }}
-                    placeholder="+44 1603 123456 or 07123 456789"
                     className={`w-full pl-9 pr-3 py-2.5 text-sm rounded-lg border ${
                       errors.phoneNumber
                         ? 'border-rose-400 bg-rose-50/50 text-rose-900 focus:ring-rose-400'
@@ -469,18 +447,8 @@ export const PilotModal: React.FC<PilotModalProps> = ({ isOpen, onClose, trigger
                 )}
               </div>
 
-              {/* Required Disclosure Notice */}
-              <div className="pt-2 pb-1">
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-start gap-2.5">
-                  <ShieldAlert className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
-                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                    Your details will be saved only in this browser. This form does not send an enquiry to SiloGuard.
-                  </p>
-                </div>
-              </div>
-
               {/* Form Actions */}
-              <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-100">
+              <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={onClose}

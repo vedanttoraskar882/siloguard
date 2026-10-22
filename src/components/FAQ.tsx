@@ -100,10 +100,10 @@ export const FAQ: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 mb-3">
             Questions &amp; Answers
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
             Frequently Asked Questions
           </h2>
           <p className="mt-3 text-base text-slate-600">
@@ -112,7 +112,7 @@ export const FAQ: React.FC = () => {
         </div>
 
         {/* Accessible Accordion */}
-        <div className="space-y-3" role="region" aria-label="Frequently Asked Questions Accordion">
+        <div className="space-y-3.5" role="region" aria-label="Frequently Asked Questions Accordion">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             const headingId = `faq-heading-${faq.id}`;
@@ -121,7 +121,11 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className="border border-slate-200 rounded-xl overflow-hidden transition-colors bg-white shadow-xs"
+                className={`border rounded-2xl overflow-hidden transition-all duration-200 ${
+                  isOpen
+                    ? 'border-emerald-600/60 bg-emerald-50/20 shadow-sm'
+                    : 'border-slate-200/90 bg-white hover:border-slate-300'
+                }`}
               >
                 <h3>
                   <button
@@ -130,12 +134,14 @@ export const FAQ: React.FC = () => {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-slate-900 hover:text-emerald-800 hover:bg-slate-50/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-bold text-slate-900 hover:text-emerald-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
-                    <span className="text-sm sm:text-base">{faq.question}</span>
+                    <span className="text-sm sm:text-base leading-snug">{faq.question}</span>
                     <span
-                      className={`w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 bg-emerald-100 text-emerald-800' : ''
+                      className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                        isOpen
+                          ? 'rotate-180 bg-emerald-600 text-white'
+                          : 'bg-slate-100 text-slate-500'
                       }`}
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -147,7 +153,7 @@ export const FAQ: React.FC = () => {
                     id={panelId}
                     role="region"
                     aria-labelledby={headingId}
-                    className="px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100 animate-in fade-in duration-150"
+                    className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 animate-in fade-in duration-150"
                   >
                     {faq.answer}
                   </div>

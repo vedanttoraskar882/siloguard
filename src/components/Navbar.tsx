@@ -14,13 +14,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+      setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Trap focus or handle Escape in mobile menu
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
@@ -52,55 +51,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-md py-3 border-b border-slate-800'
-          : 'bg-slate-950/90 backdrop-blur-sm py-4 border-b border-slate-800/80'
+          ? 'bg-slate-950/90 backdrop-blur-xl shadow-lg shadow-black/20 py-3 border-b border-slate-800/80'
+          : 'bg-slate-950/70 backdrop-blur-md py-4 border-b border-slate-800/40'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo & Wordmark */}
+          {/* Logo & Wordmark: Pure clean typography wordmark without the icon next to it */}
           <a
             href="#home"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-lg p-1"
+            className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-lg py-1 px-1.5 transition-transform hover:scale-[1.01]"
             aria-label="SiloGuard Home"
           >
-            <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-950/40 group-hover:bg-emerald-500 transition-colors">
-              {/* Custom SiloGuard SVG Icon */}
-              <svg
-                viewBox="0 0 24 24"
-                className="w-5 h-5 fill-none stroke-current stroke-2 stroke-linecap-round stroke-linejoin-round"
-                aria-hidden="true"
-              >
-                {/* Silo body & top cone */}
-                <path d="M5 21V9a7 7 0 0 1 14 0v12" />
-                <path d="M4 21h16" />
-                <path d="M9 5l3-3 3 3" />
-                <path d="M12 2v3" />
-                {/* Level / safety shield line */}
-                <path d="M9 13h6" />
-                <path d="M9 17h6" />
-              </svg>
-            </div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+              <span className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
                 SiloGuard
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
               </span>
-              <span className="text-[10px] font-semibold text-slate-400 tracking-wider uppercase -mt-1">
+              <span className="text-[10px] font-bold text-emerald-400 tracking-wider uppercase -mt-0.5">
                 Dust-Explosion Compliance
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-1 bg-slate-900/60 p-1 rounded-full border border-slate-800/80 backdrop-blur-sm" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-2 text-sm font-semibold text-slate-300 hover:text-white rounded-lg hover:bg-slate-800/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                className="px-4 py-1.5 text-xs font-semibold text-slate-300 hover:text-white rounded-full hover:bg-slate-800 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               >
                 {link.name}
               </a>
@@ -113,10 +95,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
               ref={pilotButtonRef}
               type="button"
               onClick={() => onRequestPilot(pilotButtonRef)}
-              className="px-5 py-2.5 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 rounded-lg shadow-sm shadow-emerald-950/40 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 flex items-center gap-1.5"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 rounded-xl shadow-md shadow-emerald-950/40 transition-all hover:shadow-emerald-600/20 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               <span>Request a Pilot</span>
-              <ChevronRight className="w-4 h-4 text-emerald-200" />
+              <ChevronRight className="w-3.5 h-3.5 text-emerald-200 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
@@ -125,12 +107,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 transition-colors"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label={mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -141,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 animate-in slide-in-from-top duration-200"
+          className="lg:hidden bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 px-5 pt-3 pb-6 animate-in slide-in-from-top-2 duration-200"
         >
           <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
             {navLinks.map((link) => (
@@ -152,12 +134,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
                   e.preventDefault();
                   handleLinkClick(link.href);
                 }}
-                className="px-3.5 py-2.5 text-base font-semibold text-slate-200 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                className="px-3.5 py-2.5 text-sm font-semibold text-slate-200 hover:text-white hover:bg-slate-900 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-4 mt-2 border-t border-slate-800">
+            <div className="pt-4 mt-2 border-t border-slate-800/80">
               <button
                 ref={mobilePilotButtonRef}
                 type="button"
@@ -165,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestPilot }) => {
                   setMobileMenuOpen(false);
                   onRequestPilot(mobilePilotButtonRef);
                 }}
-                className="w-full py-3 px-4 text-center font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow transition-colors flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                className="w-full py-3 px-4 text-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               >
                 <span>Request a Pilot</span>
                 <ChevronRight className="w-4 h-4" />

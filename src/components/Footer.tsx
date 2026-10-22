@@ -31,29 +31,18 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot, onOpenPrivacyNot
         {/* Top Footer Section: Wordmark + Description + CTA */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-10 border-b border-slate-800/80">
           <div className="space-y-3 max-w-xl">
-            {/* Wordmark */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 fill-none stroke-current stroke-2 stroke-linecap-round stroke-linejoin-round"
-                  aria-hidden="true"
-                >
-                  <path d="M5 21V9a7 7 0 0 1 14 0v12" />
-                  <path d="M4 21h16" />
-                  <path d="M9 5l3-3 3 3" />
-                  <path d="M12 2v3" />
-                  <path d="M9 13h6" />
-                  <path d="M9 17h6" />
-                </svg>
-              </div>
-              <span className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-1.5">
+            {/* Pure Wordmark without square icon next to it */}
+            <div className="flex flex-col">
+              <span className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-1.5">
                 SiloGuard
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
+              </span>
+              <span className="text-[10px] font-bold text-emerald-400 tracking-wider uppercase">
+                Dust-Explosion Compliance
               </span>
             </div>
 
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-slate-400 leading-relaxed pt-1">
               Independent baseline assessments and practical compliance-evidence management for grain, feed and flour sites.
             </p>
 
@@ -69,15 +58,15 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot, onOpenPrivacyNot
               ref={pilotButtonRef}
               type="button"
               onClick={() => onRequestPilot(pilotButtonRef)}
-              className="px-6 py-3 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl transition-all shadow-md flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="px-6 py-3.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl transition-all shadow-md shadow-emerald-950/40 hover:-translate-y-0.5 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
               <span>Request a Pilot</span>
-              <ChevronRight className="w-4 h-4 text-emerald-200" />
+              <ChevronRight className="w-3.5 h-3.5 text-emerald-200" />
             </button>
             <button
               type="button"
               onClick={scrollToTop}
-              className="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-800 transition-colors flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="px-4 py-3.5 text-xs font-semibold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-800 transition-colors flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />
@@ -112,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot, onOpenPrivacyNot
         </div>
 
         {/* Mandatory Service-Scope Statement */}
-        <div className="p-5 rounded-xl bg-slate-900 border border-slate-800/80 text-xs text-slate-400 leading-relaxed flex items-start gap-3">
+        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/80 text-xs text-slate-400 leading-relaxed flex items-start gap-3">
           <Shield className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
           <p>
             <strong className="text-slate-300">Service Scope Notice:</strong> SiloGuard supports compliance evidence management. It does not independently classify hazardous zones, certify equipment or replace competent professional judgement. Site duty-holders retain responsibility.

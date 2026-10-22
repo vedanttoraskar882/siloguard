@@ -73,48 +73,48 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 mb-3">
             Service Workflow
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
             How SiloGuard works in practice.
           </h2>
-          <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
             From initial site onboarding and independent assessment to routine checks and audit-ready evidence packs.
           </p>
         </div>
 
-        {/* 6 Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 6 Steps Grid with Connected Aesthetics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
           {steps.map((item) => {
             const IconComp = item.icon;
             return (
               <div
                 key={item.step}
-                className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-emerald-500/40 hover:bg-white hover:shadow-sm transition-all"
+                className="bg-slate-50 border border-slate-200/90 rounded-3xl p-7 sm:p-8 flex flex-col justify-between hover:border-emerald-500/40 hover:bg-white hover:shadow-lg transition-all relative group"
               >
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-black font-mono text-emerald-700">
+                    <span className="text-3xl font-black font-mono text-emerald-700/80 group-hover:text-emerald-600 transition-colors">
                       {item.step}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-100/80 text-emerald-800 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
                       <IconComp className="w-5 h-5" />
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2.5">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-slate-200/80">
-                  <div className="text-[11px] text-slate-500 flex items-start gap-1.5 leading-snug">
+                <div className="mt-6 pt-4 border-t border-slate-200/80">
+                  <div className="text-[11px] text-slate-500 flex items-start gap-2 leading-relaxed">
                     <Clock className="w-3.5 h-3.5 text-emerald-700 mt-0.5 shrink-0" />
                     <span>{item.clarification}</span>
                   </div>
@@ -124,12 +124,16 @@ export const HowItWorks: React.FC = () => {
           })}
         </div>
 
-        {/* Target Milestone Note Banner */}
-        <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 flex items-start sm:items-center gap-3 text-xs text-slate-600">
-          <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5 sm:mt-0" />
-          <span>
-            <strong>Onboarding Commitment:</strong> Baseline assessments are carried out by vetted, competent independent DSEAR assessors. Operating parameters and checklists are established against physical site drawings and equipment categories.
-          </span>
+        {/* Quality Banner */}
+        <div className="p-6 rounded-3xl bg-slate-900 text-white border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md">
+          <div className="flex items-start sm:items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-950 flex items-center justify-center text-emerald-400 shrink-0 border border-emerald-800/40">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <strong>Onboarding Commitment:</strong> Baseline assessments are carried out by vetted, competent independent DSEAR assessors. Operating parameters and checklists are established against physical site drawings and equipment categories.
+            </p>
+          </div>
         </div>
       </div>
     </section>

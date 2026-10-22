@@ -14,7 +14,8 @@ import {
   RotateCcw,
   Users,
   Shield,
-  Sparkles
+  Sparkles,
+  ChevronRight
 } from 'lucide-react';
 
 export const Platform: React.FC = () => {
@@ -23,7 +24,7 @@ export const Platform: React.FC = () => {
   const modules = [
     {
       id: 'mod-1',
-      number: 'Module 1',
+      number: '01',
       title: 'Hazardous-Zone Asset Register',
       shortDesc: 'Structured register of machines, assessed zones, equipment categories and controls.',
       icon: Database,
@@ -37,7 +38,7 @@ export const Platform: React.FC = () => {
     },
     {
       id: 'mod-2',
-      number: 'Module 2',
+      number: '02',
       title: 'Independent Baseline & Machine-Specific Checks',
       shortDesc: 'Competent baseline setup converted into practical QR-linked machine checklists.',
       icon: QrCode,
@@ -51,7 +52,7 @@ export const Platform: React.FC = () => {
     },
     {
       id: 'mod-3',
-      number: 'Module 3',
+      number: '03',
       title: 'Compliance Rules & Certificate Tracking',
       shortDesc: 'Automated flags for overdue checks, certificate renewals and repeated findings.',
       icon: BellRing,
@@ -64,7 +65,7 @@ export const Platform: React.FC = () => {
     },
     {
       id: 'mod-4',
-      number: 'Module 4',
+      number: '04',
       title: 'Corrective Actions & Repair Change Log',
       shortDesc: 'Close the loop on failed checks, assigned fitters and replacement components.',
       icon: Wrench,
@@ -77,7 +78,7 @@ export const Platform: React.FC = () => {
     },
     {
       id: 'mod-5',
-      number: 'Module 5',
+      number: '05',
       title: 'Multi-Site Dashboard & Benchmarking',
       shortDesc: 'Group visibility across multiple stores, intake points and processing plants.',
       icon: BarChart3,
@@ -90,7 +91,7 @@ export const Platform: React.FC = () => {
     },
     {
       id: 'mod-6',
-      number: 'Module 6',
+      number: '06',
       title: 'Evidence Packs & Record Integrity',
       shortDesc: 'Dated audit-ready PDF and CSV bundles preserving historical records.',
       icon: FileArchive,
@@ -179,24 +180,61 @@ export const Platform: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         {/* Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-200 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-200 mb-3">
             Platform Specification
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
             A connected record from machine to evidence pack.
           </h2>
-          <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
             SiloGuard unites assessor-verified baseline requirements with everyday frontline maintenance, creating a verified digital audit trail that stays current between formal visits.
           </p>
+        </div>
+
+        {/* Conceptual Workflow Track */}
+        <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-4">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
+            Connected Record Architecture
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+              <span className="w-7 h-7 rounded-lg bg-emerald-700 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <div>
+                <div className="text-xs font-bold text-slate-900">Machine Register</div>
+                <div className="text-[11px] text-slate-500">Assessed DSEAR zones</div>
+              </div>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+              <span className="w-7 h-7 rounded-lg bg-emerald-700 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <div>
+                <div className="text-xs font-bold text-slate-900">QR Checklists</div>
+                <div className="text-[11px] text-slate-500">In-person mobile proof</div>
+              </div>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+              <span className="w-7 h-7 rounded-lg bg-emerald-700 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">3</span>
+              <div>
+                <div className="text-xs font-bold text-slate-900">Corrective Actions</div>
+                <div className="text-[11px] text-slate-500">Closed repair logs</div>
+              </div>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
+              <span className="w-7 h-7 rounded-lg bg-emerald-700 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">4</span>
+              <div>
+                <div className="text-xs font-bold text-slate-900">Evidence Packs</div>
+                <div className="text-[11px] text-slate-500">Audit-ready exports</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 6 Modules Grid & Tab Display */}
         <div className="space-y-8">
           <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-            <h3 className="text-xl font-bold text-slate-900">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
               Six Core Platform Modules
             </h3>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-xs text-slate-500 font-medium hidden sm:inline">
               Illustrative platform preview • Development specification
             </span>
           </div>
@@ -209,23 +247,23 @@ export const Platform: React.FC = () => {
                 <div
                   key={mod.id}
                   onClick={() => setActiveModule(index)}
-                  className={`cursor-pointer rounded-2xl p-6 transition-all flex flex-col justify-between border ${
+                  className={`cursor-pointer rounded-3xl p-7 transition-all flex flex-col justify-between border ${
                     isSelected
                       ? 'bg-white border-emerald-600 shadow-md ring-2 ring-emerald-500/20'
-                      : 'bg-white/80 border-slate-200 hover:border-slate-300 hover:shadow-sm'
+                      : 'bg-white/80 border-slate-200/90 hover:border-slate-300 hover:shadow-sm'
                   }`}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                          isSelected ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-700'
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
+                          isSelected ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950/20' : 'bg-slate-100 text-slate-700'
                         }`}
                       >
                         <IconComp className="w-5 h-5" />
                       </div>
-                      <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                        {mod.number}
+                      <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                        Module {mod.number}
                       </span>
                     </div>
 
@@ -238,7 +276,7 @@ export const Platform: React.FC = () => {
                       </p>
                     </div>
 
-                    <ul className="space-y-2 text-xs text-slate-700 border-t border-slate-100 pt-3">
+                    <ul className="space-y-2.5 text-xs text-slate-700 border-t border-slate-100 pt-3.5">
                       {mod.details.map((item, dIdx) => (
                         <li key={dIdx} className="flex items-start gap-2">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
@@ -248,12 +286,13 @@ export const Platform: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
                       {mod.tag}
                     </span>
                     <span className="text-xs font-semibold text-emerald-700 flex items-center gap-1">
                       {isSelected ? 'Selected' : 'View details'}
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>
@@ -263,13 +302,13 @@ export const Platform: React.FC = () => {
         </div>
 
         {/* Supporting Capabilities Feature Strip */}
-        <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 border border-slate-800 space-y-8">
+        <div className="bg-slate-950 text-white rounded-3xl p-7 sm:p-10 border border-slate-800 space-y-8 shadow-xl">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider mb-2">
               <Sparkles className="w-4 h-4" />
               <span>Supporting Planned Capabilities</span>
             </div>
-            <h3 className="text-2xl font-bold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
               Built for Frontline Agricultural Operations
             </h3>
             <p className="text-sm text-slate-400 mt-1 max-w-2xl">
@@ -283,12 +322,12 @@ export const Platform: React.FC = () => {
               return (
                 <div
                   key={feat.title}
-                  className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-slate-700 transition-colors"
+                  className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center mb-3 border border-emerald-800/40">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center mb-3 border border-emerald-800/40">
                     <IconComp className="w-4 h-4" />
                   </div>
-                  <h4 className="text-sm font-bold text-slate-200 mb-1">
+                  <h4 className="text-sm font-bold text-slate-200 mb-1.5">
                     {feat.title}
                   </h4>
                   <p className="text-xs text-slate-400 leading-relaxed">
@@ -299,7 +338,7 @@ export const Platform: React.FC = () => {
             })}
           </div>
 
-          <div className="text-[11px] text-slate-400 border-t border-slate-800 pt-4 flex items-center gap-2">
+          <div className="text-[11px] text-slate-400 border-t border-slate-800/80 pt-4 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span>Planned capabilities are part of the future development specifications and are not active landing-page functions.</span>
           </div>
@@ -309,7 +348,7 @@ export const Platform: React.FC = () => {
         <div className="space-y-6">
           <div className="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-2xl font-bold text-slate-900">
                 Development Roadmap &amp; Phasing
               </h3>
               <p className="text-xs text-slate-600 mt-0.5">
@@ -325,13 +364,13 @@ export const Platform: React.FC = () => {
             {roadmapMilestones.map((item, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-white border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4"
+                className="p-6 rounded-2xl bg-white border border-slate-200/90 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-colors"
               >
                 <div className="md:w-1/4 shrink-0">
                   <div className="text-sm font-bold text-slate-900">
                     {item.period}
                   </div>
-                  <span className="inline-block mt-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  <span className="inline-block mt-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                     {item.status}
                   </span>
                 </div>
@@ -344,9 +383,9 @@ export const Platform: React.FC = () => {
         </div>
 
         {/* Mandatory Service Boundaries Banner */}
-        <div className="p-6 rounded-2xl bg-slate-900 text-slate-200 border border-slate-800 space-y-4">
-          <div className="flex items-center gap-2 text-amber-400 font-bold text-sm tracking-wide uppercase">
-            <Shield className="w-5 h-5 text-amber-400" />
+        <div className="p-7 sm:p-9 rounded-3xl bg-slate-900 text-slate-200 border border-slate-800 space-y-4">
+          <div className="flex items-center gap-2 text-amber-400 font-bold text-xs tracking-wider uppercase">
+            <Shield className="w-4 h-4 text-amber-400" />
             <span>Service Scope &amp; Legal Boundaries</span>
           </div>
 
